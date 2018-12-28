@@ -26,15 +26,11 @@ client.on('ready', () => {
   console.log('')
 });
 
-client.on('guildMemberAdd', member => {
-  member.guild.fetchInvites().then(guildInvites => {
-    const ei = invites[member.guild.id];
-    invites[member.guild.id] = guildInvites;
-    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-    const inviter = client.users.get(invite.inviter.id);
-    const logChannel = member.guild.channels.find(channel => channel.name === "simo");
-    logChannel.send(`Invited by: <@${inviter.id}>`);
-  });
+client.on("ready", () => { // كود رينبو
+  function lol() {
+    client.guilds.get('525638862219771914').roles.find("name", "DEVELOPERS").setColor("RANDOM");
+  };
+  setInterval(lol, 1000);
 });
 
 client.login(process.env.BOT_TOKEN);
